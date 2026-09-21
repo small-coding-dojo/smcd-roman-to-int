@@ -1,11 +1,7 @@
 import unittest
 
 def convert(input):
-    if input == "III":
-        return 3
-    if input == "II":
-        return 2
-    return 1
+    return len(input)
 
 class TestConvert(unittest.TestCase):
     def test_i(self):
