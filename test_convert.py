@@ -1,12 +1,8 @@
 import unittest
 
 def convert(input):
-    if input == "XXX":
-        return 30
-    if input == "XX":
-        return 20
-    if input == "X":
-        return 10
+    if input[0] == "X":
+        return len(input) * 10
     return len(input)
 
 class TestConvert(unittest.TestCase):
