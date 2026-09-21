@@ -7,15 +7,10 @@ roman_value = {
 }
 
 def convert(input):
-    if input == "CI":
-         return 101
-    if input == "CX":
-        return 110
-    if input == "XI":
-        return 11
-    symbol = input[0]
-    value = roman_value[symbol]
-    return len(input) * value
+    result = 0
+    for symbol in input:
+         result += roman_value[symbol]
+    return result
 
 class TestConvert(unittest.TestCase):
     def test_i(self):
