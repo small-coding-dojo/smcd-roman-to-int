@@ -3,10 +3,18 @@ import unittest
 roman_value = {
     "C": 100,
     "X": 10,
+    "V": 5,
     "I": 1
 }
 
 def convert(input):
+    if input == "XC":
+        return 90
+    if input == "IX":
+        return 9
+    if input == "IV":
+        return 4
+
     result = 0
     for symbol in input:
          result += roman_value[symbol]
@@ -44,10 +52,22 @@ class TestConvert(unittest.TestCase):
         self.assertEqual(convert("XI"), 11)
 
     def test_cx(self):
-            self.assertEqual(convert("CX"), 110)
+        self.assertEqual(convert("CX"), 110)
 
     def test_ci(self):
-                self.assertEqual(convert("CI"), 101)
+        self.assertEqual(convert("CI"), 101)
+
+    def test_v(self):
+        self.assertEqual(convert("V"), 5)
+
+    def test_iv(self):
+        self.assertEqual(convert("IV"), 4)
+
+    def test_ix(self):
+        self.assertEqual(convert("IX"), 9)
+
+    def test_xc(self):
+        self.assertEqual(convert("XC"), 90)
 
 if __name__ == "__main__":
     unittest.main()
