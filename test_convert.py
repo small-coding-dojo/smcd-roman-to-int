@@ -1,11 +1,15 @@
 import unittest
 
+roman_value = {
+    "C": 100,
+    "X": 10,
+    "I": 1
+}
+
 def convert(input):
-    if input[0] == "C":
-        return len(input) * 100
-    if input[0] == "X":
-        return len(input) * 10
-    return len(input)
+    symbol = input[0]
+    value = roman_value[symbol]
+    return len(input) * value
 
 class TestConvert(unittest.TestCase):
     def test_i(self):
