@@ -8,16 +8,21 @@ roman_value = {
 }
 
 def convert(input):
-    if input == "XC":
-        return 90
-    if input == "IX":
-        return 9
-    if input == "IV":
-        return 4
-
+    reversed = input[::-1]
+    
     result = 0
-    for symbol in input:
-         result += roman_value[symbol]
+    previous = 1
+
+    for symbol in reversed:
+        current = roman_value[symbol]
+
+        if current < previous:
+            result -= current
+        else:
+            result += current
+        
+        previous = roman_value[symbol]
+
     return result
 
 class TestConvert(unittest.TestCase):
