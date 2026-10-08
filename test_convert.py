@@ -5,12 +5,19 @@ class Convert:
     @classmethod
     def convert(cls, theRomanString):
         if len(theRomanString) > 1:
+          if theRomanString.find("X") == 1:
+                return 10 - Convert.convert(theRomanString[:1])
+          if theRomanString.find("X") == 0:
+                return 10 + Convert.convert(theRomanString[1:])
+
           if theRomanString.find("V") == 0:
                 return 5 + Convert.convert(theRomanString[1:])
           if theRomanString.find("V") == 1:
                 return 5 - Convert.convert(theRomanString[:1])
         if theRomanString == "V":
             return 5
+        if theRomanString == "X":
+            return 10
         return len(theRomanString)
 
 
@@ -35,6 +42,35 @@ class TestConvert(unittest.TestCase):
 
     def test_viii(self):
         self.assertEqual(8, Convert.convert("VIII"))
+
+    def test_X(self):
+        self.assertEqual(10, Convert.convert("X"))
+
+    def test_IX(self):
+        self.assertEqual(9, Convert.convert("IX"))
+
+    def test_XI(self):
+        self.assertEqual(11, Convert.convert("XI"))
+
+    def test_XIV(self):
+        self.assertEqual(14, Convert.convert("XIV"))
+
+    def test_XV(self):
+        self.assertEqual(15, Convert.convert("XV"))
+
+    def test_XVI(self):
+        self.assertEqual(16, Convert.convert("XVI"))
+
+    def test_XVIII(self):
+        self.assertEqual(18, Convert.convert("XVIII"))
+
+    def test_XIX(self):
+        self.assertEqual(19, Convert.convert("XIX"))
+
+
+    def test_XX(self):
+        self.assertEqual(20, Convert.convert("XX"))
+
 
 if __name__ == "__main__":
     unittest.main()
