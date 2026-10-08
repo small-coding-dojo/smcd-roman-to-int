@@ -30,12 +30,8 @@ class Convert:
             if theRomanString.find("V") == 1:
                 return 5 - Convert.convert(theRomanString[:1])
             '''
-        if theRomanString == "V":
-            return 5
-        if theRomanString == "X":
-            return 10
-        if theRomanString == "L":
-            return 50
+        if theRomanString in cls.theSymbolMap:
+            return cls.theSymbolMap[theRomanString]
         return len(theRomanString)
 
 
