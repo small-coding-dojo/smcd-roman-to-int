@@ -2,34 +2,19 @@ import unittest
 
 
 class Convert:
-    theSymbolMap = {"L": 50, "X": 10, "V": 5}
+    theSymbolMap = {"L": 50, "X": 10, "V": 5 }
 
     @classmethod
     def convert(cls, theRomanString):
         if len(theRomanString) > 1:
-            for (theRomanCharacter, theNumericValue) in cls.theSymbolMap.items():
+            for (currentRomanCharacter, itsNumericValue) in cls.theSymbolMap.items():
 
-                if theRomanString.find(theRomanCharacter) == 1:
-                    return theNumericValue - Convert.convert(theRomanString[:1])
+                if theRomanString.find(currentRomanCharacter) == 1:
+                    return itsNumericValue - Convert.convert(theRomanString[:1])
 
-                if theRomanString.find(theRomanCharacter) == 0:
-                    return theNumericValue + Convert.convert(theRomanString[1:])
-            '''
-            if theRomanString.find("L") == 1:
-                return 50 - Convert.convert(theRomanString[:1])
-            if theRomanString.find("L") == 0:
-                return 50 + Convert.convert(theRomanString[1:])
+                if theRomanString.find(currentRomanCharacter) == 0:
+                    return itsNumericValue + Convert.convert(theRomanString[1:])
 
-            if theRomanString.find("X") == 1:
-                return 10 - Convert.convert(theRomanString[:1])
-            if theRomanString.find("X") == 0:
-                return 10 + Convert.convert(theRomanString[1:])
-
-            if theRomanString.find("V") == 0:
-                return 5 + Convert.convert(theRomanString[1:])
-            if theRomanString.find("V") == 1:
-                return 5 - Convert.convert(theRomanString[:1])
-            '''
         if theRomanString in cls.theSymbolMap:
             return cls.theSymbolMap[theRomanString]
         return len(theRomanString)
