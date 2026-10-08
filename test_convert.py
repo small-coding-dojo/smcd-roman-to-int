@@ -2,22 +2,35 @@ import unittest
 
 
 class Convert:
+    def __init__(self):
+        self.map = { "L": 50, "X": 10, "V": 5 }
+
     @classmethod
     def convert(cls, theRomanString):
         if len(theRomanString) > 1:
-          if theRomanString.find("X") == 1:
+            #for (symbol, value) in cls.map:
+            #  pass
+
+            if theRomanString.find("L") == 1:
+                return 50 - Convert.convert(theRomanString[:1])
+            if theRomanString.find("L") == 0:
+                return 50 + Convert.convert(theRomanString[1:])
+
+            if theRomanString.find("X") == 1:
                 return 10 - Convert.convert(theRomanString[:1])
-          if theRomanString.find("X") == 0:
+            if theRomanString.find("X") == 0:
                 return 10 + Convert.convert(theRomanString[1:])
 
-          if theRomanString.find("V") == 0:
+            if theRomanString.find("V") == 0:
                 return 5 + Convert.convert(theRomanString[1:])
-          if theRomanString.find("V") == 1:
+            if theRomanString.find("V") == 1:
                 return 5 - Convert.convert(theRomanString[:1])
         if theRomanString == "V":
             return 5
         if theRomanString == "X":
             return 10
+        if theRomanString == "L":
+            return 50
         return len(theRomanString)
 
 
@@ -67,9 +80,20 @@ class TestConvert(unittest.TestCase):
     def test_XIX(self):
         self.assertEqual(19, Convert.convert("XIX"))
 
-
     def test_XX(self):
         self.assertEqual(20, Convert.convert("XX"))
+
+    def test_XXXIX(self):
+        self.assertEqual(39, Convert.convert("XXXIX"))
+
+    def test_L(self):
+        self.assertEqual(50, Convert.convert("L"))
+
+    def test_IL(self):
+        self.assertEqual(49, Convert.convert("IL"))
+
+    def test_LI(self):
+        self.assertEqual(51, Convert.convert("LI"))
 
 
 if __name__ == "__main__":
