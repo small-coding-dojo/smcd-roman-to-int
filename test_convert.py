@@ -2,15 +2,19 @@ import unittest
 
 
 class Convert:
-    def __init__(self):
-        self.map = { "L": 50, "X": 10, "V": 5 }
+    theSymbolMap = {"L": 50, "X": 10, "V": 5}
 
     @classmethod
     def convert(cls, theRomanString):
         if len(theRomanString) > 1:
-            #for (symbol, value) in cls.map:
-            #  pass
+            for (theRomanCharacter, theNumericValue) in cls.theSymbolMap.items():
 
+                if theRomanString.find(theRomanCharacter) == 1:
+                    return theNumericValue - Convert.convert(theRomanString[:1])
+
+                if theRomanString.find(theRomanCharacter) == 0:
+                    return theNumericValue + Convert.convert(theRomanString[1:])
+            '''
             if theRomanString.find("L") == 1:
                 return 50 - Convert.convert(theRomanString[:1])
             if theRomanString.find("L") == 0:
@@ -25,6 +29,7 @@ class Convert:
                 return 5 + Convert.convert(theRomanString[1:])
             if theRomanString.find("V") == 1:
                 return 5 - Convert.convert(theRomanString[:1])
+            '''
         if theRomanString == "V":
             return 5
         if theRomanString == "X":
