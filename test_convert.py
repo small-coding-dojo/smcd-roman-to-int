@@ -1,17 +1,23 @@
 import unittest
 
+
 map = {
-    "L": "XXXXX",
-    "X": "VV",
-    "V": "IIIII"
+    "L": 50,
+    "X": 10,
+    "V": 5,
+    "IV": 4
 }
 
 def convert(input : string) -> int:
     if len(input) > 1:
-        return convert(input[0]) + convert(input[1:])
+        if input[0:2] in map:
+            return map[input[0:2]]
+        first = convert(input[0])
+        second = convert(input[1:])
+        return first + second
     
     if input[0] != "I":
-        return convert(map[input[0]])
+        return map[input[0]]
 
     return len(input)
 
@@ -43,6 +49,10 @@ class TestConvert(unittest.TestCase):
     def test_l(self):
         result = convert("L")
         self.assertEqual(result, 50)
+
+    def test_iv(self):
+        result = convert("IV")
+        self.assertEqual(result, 4)
 
 if __name__ == "__main__":
     unittest.main()
